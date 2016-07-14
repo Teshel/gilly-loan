@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
 import { Http, Headers, RequestOptions } from "@angular/http";
+import { Loan } from "./../loan/loan";
 import 'rxjs/add/operator/map'
 
 @Component({
@@ -17,6 +18,7 @@ export class HomeComponent {
 		username: "john"
 	};
 	constructor(public http: Http) {}
+
 	signup() {
 
 		this.http.post("/login/signup", JSON.stringify({ password: this.user.password, username: this.user.username }), new RequestOptions({
@@ -62,7 +64,7 @@ export class HomeComponent {
 						text: "You can call protected api now",
 						title: "Login succesfull"
 					};
-			
+
 					localStorage.setItem("jwt", res.jwt);
 				},
 				(error: any) => {

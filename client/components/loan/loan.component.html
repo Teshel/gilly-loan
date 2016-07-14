@@ -1,0 +1,68 @@
+<div class="ui two column grid">
+    <div class="six wide column">
+        <sm-segment class="raised">
+            <h3>Create Loan</h3>
+
+            <div class="ui form">
+                <div class="fields">
+                    <div class="twelve wide field">
+                        <label>Loan Name</label>
+                        <input type="text" [(ngModel)]="nameField" placeholder="" value="Loan" />
+                    </div>
+                    <div class="four wide field">
+                        <label>Starting Date</label>
+                        <input type="date" [(ngModel)]="datePicker" />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Principle</label>
+                            <input [(ngModel)]="principleField" value="10000" />
+                        </div>
+
+                        <div class="field">
+                            <label>Interest Rate</label>
+                            <input type="number" [(ngModel)]="rateField" value="6" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="ui divider hidden"></div>
+            <sm-button class="positive" (click)="createLoan()">Create Loan</sm-button>
+        </sm-segment>
+    </div>
+    <div class="ten wide column">
+        <sm-segment class="raised">
+            <div *ngIf="currentLoan">
+                <h3 class="top attached block header">{{ currentLoan.name }}</h3>
+                <!--<div class="ui label">{{ format(datePicker) }}</div>-->
+                <h4>Ledger</h4>
+                <table class="ui celled striped table">
+
+                </table>
+            </div>
+            <div *ngIf="currentLoan === null">
+                    <h3 class="top attached block header">Ledger</h3>
+                    <table class="ui celled striped table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Date</th>
+                                <th>Payment</th>
+                                <th>
+                            </tr>
+                        </thead>
+                        <tr *ngFor="let record of loanIpsum.records">
+                            <td>{{record.id}}</td>
+                            <td *ngIf="record.payment > 0" class="positive">${{record.payment}}</td>
+                            <td *ngIf="record.payment < 0" class="negative">${{record.payment}}</td>
+                            <td>${{}}
+                        </tr>
+                    </table>
+            </div>
+        </sm-segment>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 {
-  "name": "angular2-express-starter",
+  "name": "Gilly Loan",
   "version": "1.0.0",
   "description": "Starter application of Angular2 on Express",
   "main": "gulpfile.js",
@@ -11,7 +11,8 @@
     "typings": "typings install",
     "bundle": "node tools/builder.js",
     "bundle:prod": "node tools/builder.js --prod",
-    "postinstall": "typings install && tsc -p ./server"
+    "postinstall": "typings install && tsc -p ./server",
+    "lite": "lite-server ./public"
   },
   "engines": {
     "node": ">= 5.4.1 < 6"
@@ -49,6 +50,7 @@
     "ng-semantic": "^1.0.28",
     "nodemon": "^1.9.1",
     "systemjs-builder": "^0.15.17",
-    "yargs": "^4.7.1"
+    "yargs": "^4.7.1",
+    "lite-server": "^2.2.0"
   }
 }
