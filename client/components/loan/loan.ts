@@ -19,6 +19,7 @@ export class Loan {
         this.startingPrinciple = principle;
         this.interest = 0;
         this.ratePerPeriod = this.rate/365;
+        this.records.push(new LoanRecord(1, -principle, 0, 0, currentDate, rate, this.getBalance()));
     }
 
     getBalance(): number {
@@ -30,22 +31,22 @@ export class Loan {
         let id = this.records.length + 1;
 
         let accruedInterest = this.accrue(date);
+        let pd_on_prc = 0;
 
         if (this.interest >= payment) {
             this.interest -= payment;
         } else {
-            let pd_on_prc = payment - this.interest;
+            pd_on_prc = payment - this.interest;
             this.principle -= pd_on_prc;
             this.interest = 0;
         }
 
-        let record = new LoanRecord(id, payment, date, this.rate, this.getBalance());
+        let record = new LoanRecord(id, payment, accruedInterest, pd_on_prc, date, this.rate, this.getBalance());
         this.records.push(record);
         return record;
     }
 
     recalculateRecords(id: number) {
-
         let balance = 0;
         for (var record of this.records) {
 
@@ -71,6 +72,8 @@ export class LoanRecord {
     constructor(
         public id: number,
         public payment: number,
+        public interest: number,
+        public pd_on_prc: number,
         public date: Date,
         public rate: number,
         public balance: number

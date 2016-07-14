@@ -1,32 +1,65 @@
 <div class="ui two column grid">
-    <div class="six wide column">
+    <div class="four wide column">
         <sm-segment class="raised">
             <h3>Create Loan</h3>
 
             <div class="ui form">
-                <div class="fields">
-                    <div class="twelve wide field">
-                        <label>Loan Name</label>
-                        <input type="text" [(ngModel)]="nameField" placeholder="" value="Loan" />
+                <!-- <div class="two fields"> -->
+                <div class="field">
+                    <label>Loan Name</label>
+                    <input type="text" [(ngModel)]="nameField" placeholder="" value="Loan" />
+                </div>
+                <div class="fifteen wide field">
+                    <label>Amount</label>
+                    <div class="ui left labeled input">
+                        <div class="ui label">$</div>
+                        <input [(ngModel)]="principleField" value="10000" />
                     </div>
-                    <div class="four wide field">
-                        <label>Starting Date</label>
-                        <input type="date" [(ngModel)]="datePicker" />
+                </div>
+                <!-- </div> -->
+                <!-- <div class="field"> -->
+                    <!-- <div class="fields"> -->
+
+                <div class="two fields">
+                    <div class="field">
+                        <label>Interest Rate</label>
+                        <div class="ui right labeled input">
+                            <input type="text" [(ngModel)]="rateField" value="6" />
+                            <div class="ui label">%</div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Compounded</label>
+                        <!-- <div class="ui selection dropdown">
+                            <input type="hidden" [(ngModel)]="period" name="period" />
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Monthly</div>
+                            <div class="menu">
+                                <div class="item" data-value="daily" data-text="Daily">Daily</div>
+                                <div class="item" data-value="monthly" data-text="Monthly">Monthly</div>
+                                <div class="item" data-value="annually" data-text="Annually">Annually</div>
+                            </div>
+                        </div> -->
+                        <select class="ui dropdown" id="foobar" #periodDropdown>
+                            <option value="daily">Daily</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="annually">Annually</option>
+                        </select>
+
                     </div>
                 </div>
                 <div class="field">
-                    <div class="two fields">
-                        <div class="field">
-                            <label>Principle</label>
-                            <input [(ngModel)]="principleField" value="10000" />
-                        </div>
-
-                        <div class="field">
-                            <label>Interest Rate</label>
-                            <input type="number" [(ngModel)]="rateField" value="6" />
+                    <label>Starting Date</label>
+                    <!-- <input type="text" [(ngModel)]="datePicker" /> -->
+                    <div class="ui calendar" id="startingDate" #startingDate>
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" [(ngModel)]="datePicker" placeholder="Date">
                         </div>
                     </div>
                 </div>
+                <!-- </div> -->
             </div>
             <br />
 
@@ -34,35 +67,31 @@
             <sm-button class="positive" (click)="createLoan()">Create Loan</sm-button>
         </sm-segment>
     </div>
-    <div class="ten wide column">
+    <div class="twelve wide column">
         <sm-segment class="raised">
-            <div *ngIf="currentLoan">
-                <h3 class="top attached block header">{{ currentLoan.name }}</h3>
-                <!--<div class="ui label">{{ format(datePicker) }}</div>-->
-                <h4>Ledger</h4>
+            <div class="ui blurred">
+                <h3 class="top attached block header">Ledger</h3>
                 <table class="ui celled striped table">
-
-                </table>
-            </div>
-            <div *ngIf="currentLoan === null">
-                    <h3 class="top attached block header">Ledger</h3>
-                    <table class="ui celled striped table">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Date</th>
-                                <th>Payment</th>
-                                <th>Balance</th>
-                            </tr>
-                        </thead>
-                        <tr *ngFor="let record of loanIpsum.records">
-                            <td>{{record.id}}</td>
-                            <td>{{format(record.date)}}</td>
-                            <td *ngIf="record.payment > 0" class="positive">${{record.payment.toFixed(2)}}</td>
-                            <td *ngIf="record.payment < 0" class="negative">${{record.payment.toFixed(2)}}</td>
-                            <td>${{record.balance.toFixed(2)}}</td>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Date</th>
+                            <th>Payment</th>
+                            <th>Interest Accr.</th>
+                            <th>Paid on Princ.</th>
+                            <th>Balance</th>
                         </tr>
-                    </table>
+                    </thead>
+                    <tr *ngFor="let record of currentLoan.records">
+                        <td>{{record.id}}</td>
+                        <td>{{format(record.date)}}</td>
+                        <td *ngIf="record.payment > 0" class="positive">${{record.payment.toFixed(2)}}</td>
+                        <td *ngIf="record.payment < 0" class="negative">-${{record.payment.toFixed(2) * -1}}</td>
+                        <td>${{record.interest.toFixed(2)}}</td>
+                        <td>${{record.pd_on_prc.toFixed(2)}}</td>
+                        <td>${{record.balance.toFixed(2)}}</td>
+                    </tr>
+                </table>
             </div>
         </sm-segment>
     </div>
