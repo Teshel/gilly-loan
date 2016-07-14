@@ -1,7 +1,7 @@
 {
   "name": "Gilly Loan",
   "version": "1.0.0",
-  "description": "Starter application of Angular2 on Express",
+  "description": "Loan Calculator",
   "main": "gulpfile.js",
   "private": true,
   "scripts": {
@@ -12,7 +12,6 @@
     "bundle": "node tools/builder.js",
     "bundle:prod": "node tools/builder.js --prod",
     "postinstall": "typings install && tsc -p ./server",
-    "lite": "lite-server ./public"
   },
   "engines": {
     "node": ">= 5.4.1 < 6"
