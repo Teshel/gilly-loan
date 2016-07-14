@@ -52,14 +52,15 @@
                                 <th>No.</th>
                                 <th>Date</th>
                                 <th>Payment</th>
-                                <th>
+                                <th>Balance</th>
                             </tr>
                         </thead>
                         <tr *ngFor="let record of loanIpsum.records">
                             <td>{{record.id}}</td>
-                            <td *ngIf="record.payment > 0" class="positive">${{record.payment}}</td>
-                            <td *ngIf="record.payment < 0" class="negative">${{record.payment}}</td>
-                            <td>${{}}
+                            <td>{{format(record.date)}}</td>
+                            <td *ngIf="record.payment > 0" class="positive">${{record.payment.toFixed(2)}}</td>
+                            <td *ngIf="record.payment < 0" class="negative">${{record.payment.toFixed(2)}}</td>
+                            <td>${{record.balance.toFixed(2)}}</td>
                         </tr>
                     </table>
             </div>
