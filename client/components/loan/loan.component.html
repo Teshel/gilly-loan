@@ -1,76 +1,98 @@
-<div class="ui two column grid">
-    <div class="four wide column">
-        <sm-segment class="raised">
-            <h3>Create Loan</h3>
-
-            <div class="ui form">
+<div class="row">
+    <div class="col-md-4">
+        <!-- <sm-segment class="raised"> -->
+        <div class="panel panel-default">
+            <!-- <h3>Create Loan</h3> -->
+            <div class="panel-heading">Create Loan</div>
+            <div class="panel-body">
+            <!-- <form> -->
                 <!-- <div class="two fields"> -->
-                <div class="field">
+                <div class="form-group">
                     <label>Loan Name</label>
-                    <input type="text" [(ngModel)]="nameField" placeholder="" value="Loan" />
+                    <input type="text" class="form-control" [(ngModel)]="nameField" placeholder="" value="Loan" />
                 </div>
-                <div class="fifteen wide field">
+                <div class="form-group">
                     <label>Amount</label>
-                    <div class="ui left labeled input">
-                        <div class="ui label">$</div>
-                        <input [(ngModel)]="principleField" value="10000" />
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input class="form-control" [(ngModel)]="principleField" value="10000" />
                     </div>
                 </div>
                 <!-- </div> -->
                 <!-- <div class="field"> -->
                     <!-- <div class="fields"> -->
-
-                <div class="two fields">
-                    <div class="field">
+                <div class="row form-group">
+                    <div class="col-xs-6">
                         <label>Interest Rate</label>
-                        <div class="ui right labeled input">
-                            <input type="text" [(ngModel)]="rateField" value="6" />
-                            <div class="ui label">%</div>
+                        <div class="input-group">
+
+                            <input class="form-control" type="text" [(ngModel)]="rateField" value="6" />
+                            <span class="input-group-addon">%</span>
                         </div>
                     </div>
 
-                    <div class="field">
+                    <div class="col-xs-6">
                         <label>Compounded</label>
-                        <!-- <div class="ui selection dropdown">
-                            <input type="hidden" [(ngModel)]="period" name="period" />
-                            <i class="dropdown icon"></i>
-                            <div class="default text">Monthly</div>
-                            <div class="menu">
-                                <div class="item" data-value="daily" data-text="Daily">Daily</div>
-                                <div class="item" data-value="monthly" data-text="Monthly">Monthly</div>
-                                <div class="item" data-value="annually" data-text="Annually">Annually</div>
-                            </div>
-                        </div> -->
-                        <select class="ui dropdown" id="foobar" #periodDropdown>
+                        <!-- <div class="input-group"> -->
+
+                            <!-- <div class="ui selection dropdown">
+                                <input type="hidden" [(ngModel)]="period" name="period" />
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Monthly</div>
+                                <div class="menu">
+                                    <div class="item" data-value="daily" data-text="Daily">Daily</div>
+                                    <div class="item" data-value="monthly" data-text="Monthly">Monthly</div>
+                                    <div class="item" data-value="annually" data-text="Annually">Annually</div>
+                                </div>
+                            </div> -->
+                        <select class="form-control" id="foobar" #periodDropdown>
                             <option value="daily">Daily</option>
                             <option value="monthly">Monthly</option>
                             <option value="annually">Annually</option>
                         </select>
-
                     </div>
                 </div>
-                <div class="field">
-                    <label>Starting Date</label>
-                    <!-- <input type="text" [(ngModel)]="datePicker" /> -->
-                    <div class="ui calendar" id="startingDate" #startingDate>
-                        <div class="ui input left icon">
-                            <i class="calendar icon"></i>
-                            <input type="text" [(ngModel)]="datePicker" placeholder="Date">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <label>Starting Date</label>
+                            <div class='input-group date'>
+                                <input data-format="MM/dd/yyyy" type='text' class="form-control" [(ngModel)]="datePicker" id="datetimepicker1" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
+                        <!-- <input type="text" [(ngModel)]="datePicker" /> -->
+                        <!-- <div class="input-append date" id="startingDate" #startingDate>
+                            <input data-format="MM/dd/yyyy" type="text" [(ngModel)]="datePicker" />
+                            <span class="add-on">
+                                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                            </span>
+                          <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+
+                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- </div> -->
+            <!-- </form> -->
             </div>
             <br />
 
             <div class="ui divider hidden"></div>
             <sm-button class="positive" (click)="createLoan()">Create Loan</sm-button>
-        </sm-segment>
+        </div>
     </div>
-    <div class="twelve wide column">
-        <sm-segment class="raised">
-            <div class="ui blurred">
-                <h3 class="top attached block header">Ledger</h3>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <!-- <div class="ui blurred"> -->
+            <div class="panel-heading"><h4>Ledger</h4></div>
+            <div class="panel-body">
                 <table class="ui celled striped table">
                     <thead>
                         <tr>
@@ -93,6 +115,6 @@
                     </tr>
                 </table>
             </div>
-        </sm-segment>
+        </div>
     </div>
 </div>

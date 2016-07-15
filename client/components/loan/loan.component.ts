@@ -10,7 +10,8 @@ declare var jQuery;
 @Component({
 	directives: [SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES],
 	selector: "loan",
-	templateUrl: `client/components/loan/loan.component.html`
+	templateUrl: `client/components/loan/loan.component.html`,
+	styleUrls: ["client/components/loan/loan.component.css"]
 })
 export class LoanComponent implements AfterViewInit {
     loans: Loan[] = [];
@@ -43,12 +44,13 @@ export class LoanComponent implements AfterViewInit {
 		this.datePicker = DateUtils.getCurrentDate();
 
 		//jQuery('#select').dropdown();
-
 	}
 
 	ngAfterViewInit() {
 		//jQuery('#select').dropdown();
-		jQuery('#startingDate').calendar({type: 'date'});
+		jQuery('#datetimepicker1').datetimepicker();
+		this.datePicker = new Date();
+		//jQuery('#periodSelect').dropdown();
 	}
 
     createLoan() {
