@@ -1,5 +1,6 @@
 body {
 	background: #f4f4f4;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 .center {
 	text-align: center;
@@ -7,5 +8,37 @@ body {
 }
 
 .panel-default {
+	line-height: 1.4285em;
+	font-size: 14px;
 	box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);
+}
+
+.panel-default h1, h2, h3, h4, h5 {
+	font-weight: 700;
+}
+
+.panel-heading {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+h3 {
+	1.28rem;
+}
+
+.btn {
+	font-weight: bold;
+	padding: .78571429em 1.5em;
+	transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+	line-height: 1em;
+}
+
+.navbar-brand {
+	color: rgba(255,255,255,.9)!important;
+}
+
+.main-navbar {
+	border: none;
+	border-radius: 0px;
+	background-color: #2185D0;
 }
