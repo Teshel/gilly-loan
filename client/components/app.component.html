@@ -1,16 +1,14 @@
 <nav class="main-navbar navbar navbar-default ui menu inverted attached blue">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a [routerLink]="['/']" class="navbar-brand" [routerLinkActive]="['active']">Gilly Loan</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <a [routerLink]="['/contact']" class="item" [routerLinkActive]="['active']">Contact</a>
-
+            <ul class="nav navbar-nav">
+                <li><a [routerLink]="['/']" class="navbar-brand" [routerLinkActive]="['active']">Gilly Loan</a></li>
+                <li [routerLinkActive]="['active']"><a [routerLink]="['/contact']" class="navbar-item" [routerLinkActive]="['active']">Contact</a></li>
+            </ul>
         </div>
     </div>
 </nav>
 
 <div class="ui container">
-    <br />
     <router-outlet></router-outlet>
 </div>
