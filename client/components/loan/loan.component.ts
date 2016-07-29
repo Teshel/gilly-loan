@@ -1,14 +1,22 @@
 import { Component, Input, ViewChild, AfterViewInit, Pipe, PipeTransform, ChangeDetectorRef } from "@angular/core";
 import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
 import { Http, Headers, RequestOptions } from "@angular/http";
+
+import 'ng2-datetime/src/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js';
+import 'ng2-datetime/src/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js';
+import { NKDatetime } from "ng2-datetime/ng2-datetime";
+
 import { Loan } from "./loan";
-import {DateUtils} from "../../dateutils"
+import { DateUtils } from "../../dateutils"
 import 'rxjs/add/operator/map'
 
+import 'jquery';
 declare var jQuery;
+var $ = jQuery;
+
 
 @Component({
-	directives: [SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES],
+	directives: [SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES, NKDatetime],
 	selector: "loan",
 	templateUrl: `client/components/loan/loan.component.html`,
 	styleUrls: ["client/components/loan/loan.component.css"]
@@ -20,11 +28,11 @@ export class LoanComponent implements AfterViewInit {
     nameField 		= "Loan";
     idField 		= 1;
     principleField 	= 10000;
-    //rateField 		= 6;
-	_rate			= 6;
+	_rate			= 3.99;
 	payField 		= 1000;
 	borrowField		= 10000;
     datePicker		= DateUtils.getCurrentDate();
+	controlDatetimePicker = null;
 	period			= "";
 
 	showCreatePanel: boolean = true;
@@ -78,7 +86,7 @@ export class LoanComponent implements AfterViewInit {
     constructor(public http: Http, public cdRef: ChangeDetectorRef) {
 		let date = DateUtils.getCurrentDate();
 		date.setFullYear(date.getFullYear() - 1);
-		this.currentLoan = new Loan(0, "Ipsum Loan", 100000, 6, new Date(date.getTime()));
+		this.currentLoan = new Loan(0, "Ipsum Loan", 100000, this._rate, new Date(date.getTime()));
 
 		let payment1 = Math.round(Math.random() * 1000);
 		let payment2 = Math.round(Math.random() * 1000);
@@ -97,8 +105,17 @@ export class LoanComponent implements AfterViewInit {
 
 	ngAfterViewInit() {
 		//jQuery('#select').dropdown();
-		jQuery('#datetimepicker1').datetimepicker();
-		this.datePicker = new Date();
+		// $('#datetimepicker1').datetimepicker({
+		// 	defaultDate: DateUtils.getCurrentDate(),
+		// 	format: "MM/DD/YYYY"
+		// });
+		// jQuery('#datetimepicker1').click();
+		// jQuery('#datetimepicker2').datetimepicker({
+		// 	defaultDate: DateUtils.getCurrentDate(),
+		// 	format: "MM/DD/YYYY"
+		// });
+		//this.datePicker = DateUtils.getCurrentDate();
+		//this.controlDatetimePicker = DateUtils.getCurrentDate();
 		//jQuery('#periodSelect').dropdown();
 		this.rateFieldChange();
 		this.cdRef.detectChanges();

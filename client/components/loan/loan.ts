@@ -97,7 +97,7 @@ export class Loan {
     accrue(to: Date): number {
         console.log("Debug: Starting Accrue");
         let periodInDays = DateUtils.differenceInDays(this.currentDate, to);
-        console.log("Debug: "+periodInDays);
+        console.log("Debug: periodInDays = "+periodInDays);
         //let coefficient = Math.pow(this.ratePerPeriod, periodInDays);
         //console.log("Debug:"+this.effectiveRate;
 

@@ -12,14 +12,18 @@ var isPublic = typeof window != "undefined";
         '@angular/router':            (isPublic)? '@angular/router' : 'node_modules/@angular/router',
         'angular2-in-memory-web-api': (isPublic)? 'angular2-in-memory-web-api' : 'node_modules/angular2-in-memory-web-api',
         'rxjs':                       (isPublic)? 'rxjs' : 'node_modules/rxjs',
-        'ng-semantic':                (isPublic)? 'ng-semantic' : 'node_modules/ng-semantic'
+        'ng-semantic':                (isPublic)? 'ng-semantic' : 'node_modules/ng-semantic',
+        'ng2-datetime':               (isPublic)? 'ng2-datetime' : 'node_modules/ng2-datetime',
+        'jquery':           (isPublic)? 'jquery' : 'node_modules/jquery'
     };
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
         'app':                        { main: 'main.js',  defaultExtension: 'js' },
         'rxjs':                       { defaultExtension: 'js' },
         'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
-        'ng-semantic':                { main: 'ng-semantic', defaultExtension: 'js' }
+        'ng-semantic':                { main: 'ng-semantic', defaultExtension: 'js' },
+        'ng2-datetime':               { main: 'ng2-datetime.js', defaultExtension: 'js'},
+        'jquery':                     { main:'dist/jquery.min.js', defaultExtension: 'js' }
     };
     var ngPackageNames = [
         'common',

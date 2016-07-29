@@ -5,6 +5,7 @@
     "express": "registry:dt/express#4.0.0+20160317120654",
     "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160701212727",
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "jquery": "registry:dt/jquery#1.10.0+20160704162008",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "node": "registry:dt/node#6.0.0+20160621231320",
     "serve-favicon": "registry:dt/serve-favicon#0.0.0+20160316155526",

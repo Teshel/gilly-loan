@@ -58,7 +58,7 @@ h3 {
 	background-color: #2185D0;
 }
 
-.active, a:hover {
+[class*="navbar"].active, a[class*="navbar"]:hover {
 	outline: 0;
 	outline-color: #fff;
 	background: rgba(255,255,255,.08)!important;
@@ -152,7 +152,7 @@ h3 {
 	background-color: #F9FAFB;
 }
 
-.table-curved tr:first-child  > th:first-child {
+.table-curved tr:first-child > th:first-child {
 	border-top-left-radius: 5px;
 }
 
@@ -189,4 +189,8 @@ h3 {
 	border-right: 1px solid #888;
 	padding-right: 10px;
 	margin-right: 10px;
+}
+
+.datepicker>div {
+	display: none;
 }

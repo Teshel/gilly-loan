@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-special">
             <div class="panel-heading panel-special-heading">
                 <h4 *ngIf="showCreatePanel">Create Loan</h4>
                 <h4 *ngIf="showControlPanel">{{currentLoan.name}}</h4>
@@ -31,12 +31,18 @@
 
                         <div class="form-group">
                             <label>Starting Date</label>
-                            <div class='input-group date'>
+                            <!-- <datetime [(ngModel)]="datePicker"></datetime> -->
+
+
+                            <datetime [(ngModel)]="datePicker" [timepicker]="false" [datepicker]="{icon: 'fa fa-calendar'}"></datetime>
+
+
+                            <!-- <div class='input-group date'>
                                 <input data-format="MM/dd/yyyy" type='text' class="form-control" [(ngModel)]="datePicker" id="datetimepicker1" [disabled]="showControlPanel" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
@@ -102,7 +108,7 @@
 
 
                 <!-- Loan Control Panel -->
-                <div *ngIf="showControlPanel" class="well">
+                <div [hidden]="showCreatePanel" class="well">
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <label>Borrow More</label>
@@ -131,6 +137,23 @@
                     <div class="row">
                         <div class="col-md-6 btn-group">
                             <button type="button" class="btn positive" (click)="payLoan()">Pay</button>
+                        </div>
+                    </div>
+                    <br />
+
+                    <!-- Control Panel Datetime Picker -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>On Date</label>
+                                <div class='input-group date'>
+                                    <input data-format="MM/dd/yyyy" type='text' class="form-control" [(ngModel)]="controlDatePicker" id="datetimepicker2" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
