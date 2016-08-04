@@ -4,7 +4,8 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 
 import 'ng2-datetime/src/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js';
 import 'ng2-datetime/src/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js';
-import { NKDatetime } from "ng2-datetime/ng2-datetime";
+import { NKDatetime } from '../nkdatetime/nkdatetime.component';
+//import { NKDatetime } from "ng2-datetime/ng2-datetime";
 
 import { Loan } from "./loan";
 import { DateUtils } from "../../dateutils"
@@ -13,7 +14,6 @@ import 'rxjs/add/operator/map'
 import 'jquery';
 declare var jQuery;
 var $ = jQuery;
-
 
 @Component({
 	directives: [SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES, NKDatetime],
@@ -32,7 +32,7 @@ export class LoanComponent implements AfterViewInit {
 	payField 		= 1000;
 	borrowField		= 10000;
     datePicker		= DateUtils.getCurrentDate();
-	controlDatetimePicker = null;
+	controlDatePicker = DateUtils.getCurrentDate();
 	period			= "";
 
 	showCreatePanel: boolean = true;
@@ -75,12 +75,17 @@ export class LoanComponent implements AfterViewInit {
 		}
 	}
 
+	// Functions that calculate something to be displayed in the view
 	effectiveRate(): number {
 		if (this.currentLoan) {
 			return this.currentLoan.effectiveRate * 100;
 		} else {
 			return 0;
 		}
+	}
+
+	interestPerMonth(): number {
+		return this.principleField * this.currentLoan.fractionPerPeriod;
 	}
 
     constructor(public http: Http, public cdRef: ChangeDetectorRef) {

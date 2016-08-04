@@ -146,9 +146,14 @@ h3 {
 	border-bottom: 0px;
 }
 
-.table-curved tr:first-child  > th {
+.table-curved:not(.table-info) tr:first-child  > th {
 	border-bottom: 1px solid rgba(34,36,38,.1);
 	border-bottom-color: 1px solid rgba(34,36,38,.1) !important;
+	background-color: #F9FAFB;
+}
+
+.table-info tr > th {
+	border-bottom: 0;
 	background-color: #F9FAFB;
 }
 
@@ -189,8 +194,4 @@ h3 {
 	border-right: 1px solid #888;
 	padding-right: 10px;
 	margin-right: 10px;
-}
-
-.datepicker>div {
-	display: none;
 }

@@ -34,7 +34,7 @@
                             <!-- <datetime [(ngModel)]="datePicker"></datetime> -->
 
 
-                            <datetime [(ngModel)]="datePicker" [timepicker]="false" [datepicker]="{icon: 'fa fa-calendar'}"></datetime>
+                            <datetime [(ngModel)]="datePicker" [timepicker]="false" [datepicker]="{icon: 'fa fa-calendar'}" [disabled]="showControlPanel"></datetime>
 
 
                             <!-- <div class='input-group date'>
@@ -83,11 +83,38 @@
 
 
                 </div>
-                <div class="row">
+
+                <div *ngIf="true" class="row">
                     <div class="col-md-12">
-                        <div class="well">
-                            Effective interest rate: {{effectiveRate().toFixed(4)}}% annually
-                        </div>
+
+                        <table class="table table-bordered table-curved table-info table-responsive">
+                            <tr>
+                                <th>Effective Interest Rate</th>
+                                <td>{{effectiveRate().toFixed(4)}}%</td>
+                            </tr>
+                            <tr *ngIf="interestPerMonthToggle">
+                                <th>
+                                    Interest Per Month
+                                </th>
+                                <td>
+                                    {{interestPerMonth()}}
+                                </td>
+                            </tr>
+                            <tr *ngIf="minimumPaymentToggle">
+                                <th>
+                                    Minimum payment
+                                </th>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </table>
+                        <!--    Effective interest rate: {{effectiveRate().toFixed(4)}}% annually
+                        </div> -->
+
+                        <!-- Effective interest rate
+                        Interest accumulated per month
+                        Minimum payment to pay off within ___ years -->
                     </div>
                 </div>
                 <!-- End Interest Input Group -->
@@ -144,7 +171,7 @@
                     <!-- Control Panel Datetime Picker -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>On Date</label>
                                 <div class='input-group date'>
                                     <input data-format="MM/dd/yyyy" type='text' class="form-control" [(ngModel)]="controlDatePicker" id="datetimepicker2" />
@@ -152,8 +179,11 @@
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label>On Date</label>
+                                <datetime [(ngModel)]="controlDatePicker" [timepicker]="false" [datepicker]="{icon: 'fa fa-calendar'}" ></datetime>
                             </div>
-
                         </div>
                     </div>
                 </div>
