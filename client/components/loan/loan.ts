@@ -23,6 +23,7 @@ export class Loan {
         this.interest = 0;
         this.rate = rate;
         this.records.push(new LoanRecord(1, -principle, 0, 0, currentDate, rate, this.getBalance()));
+        this.calculateRates();
     }
 
     set rate(value: number) {
@@ -63,6 +64,18 @@ export class Loan {
         return 1;
     }
 
+    daysPerPeriod(): number {
+        switch (this.period) {
+            case "daily":
+                return 1;
+            case "monthly":
+                return 30;
+            case "annually":
+                return 1;
+        }
+        return 1;
+    }
+
     getBalance(): number {
         return this.principle + this.interest;
     }
@@ -94,17 +107,45 @@ export class Loan {
         }
     }
 
-    accrue(to: Date): number {
-        console.log("Debug: Starting Accrue");
-        let periodInDays = DateUtils.differenceInDays(this.currentDate, to);
-        console.log("Debug: periodInDays = "+periodInDays);
-        //let coefficient = Math.pow(this.ratePerPeriod, periodInDays);
-        //console.log("Debug:"+this.effectiveRate;
+    interestForDays(days: number): number {
+        let coefficient = Math.pow(this.ratePerPeriod, days) - 1;
+        return this.getBalance() * coefficient;
+    }
 
-        let interest = this.getBalance() * this.fractionPerPeriod;
+    differenceInPeriod(from: Date, to: Date, period: string): number {
+        
+        return 0;
+    }
+
+    /*
+     * What if
+     *      period is yearly
+            and differenceInDays is 300
+            so really, period needs to be an integer in days
+            we have this value in periodsPerYear()
+            periodsPast = Math.floor(differenceInDays / periodsPerYear())
+
+     */
+    accrue(to: Date): number {
+        // console.log("Debug: Starting Accrue");
+        //let periodInDays = DateUtils.differenceInDays(this.currentDate, to);
+        let periodsPast = DateUtils.periodBetween(this.currentDate, to, this.period);
+        //console.log("Debug: periodInDays = "+periodInDays);
+        // console.log("Debug: this.ratePerPeriod = " + this.ratePerPeriod);
+
+        // need days per period
+        // let periodsPast = Math.floor(periodInDays / this.periodsPerYear());
+        // console.log("Debug: periodsPast = " + periodsPast);
+
+        let coefficient = Math.pow(this.ratePerPeriod, periodsPast) - 1;
+        // console.log("Debug: coefficient = " + coefficient);
+
+        // console.log("Debug: fractionPerPeriod = " + this.fractionPerPeriod);
+        let interest = this.getBalance() * coefficient;
+        // console.log("Debug: interest = " + interest);
         this.interest += interest;
 
-        this.currentDate = to;
+        this.currentDate = to; // controller should be doing this!
 
         return interest;
     }

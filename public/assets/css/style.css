@@ -41,11 +41,11 @@ h3 {
 	padding-right: 14px;
 }
 
-.btn {
+.btn-lg {
 	font-weight: bold;
 	padding: .78571429em 1.5em;
 	transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
-	line-height: 1em;
+	line-height: 0.8em;
 }
 
 .navbar-brand {
@@ -146,15 +146,28 @@ h3 {
 	border-bottom: 0px;
 }
 
-.table-curved:not(.table-info) tr:first-child  > th {
+.table-curved:not(.table-info) tr:first-child > th {
 	border-bottom: 1px solid rgba(34,36,38,.1);
 	border-bottom-color: 1px solid rgba(34,36,38,.1) !important;
 	background-color: #F9FAFB;
 }
 
-.table-info tr > th {
-	border-bottom: 0;
+.table-curved:not(.table-info) tr:nth-child(even) {
 	background-color: #F9FAFB;
+}
+
+.table-info tr:last-child > th {
+	border-bottom: 0px;
+	border-bottom-left-radius: 5px;
+	background-color: #F9FAFB;
+}
+
+.table-info tr > th {
+	background-color: #F9FAFB;
+}
+
+.table-info tr {
+	background-color: none;
 }
 
 .table-curved tr:first-child > th:first-child {

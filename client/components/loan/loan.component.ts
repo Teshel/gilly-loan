@@ -5,8 +5,6 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 import 'ng2-datetime/src/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js';
 import 'ng2-datetime/src/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js';
 import { NKDatetime } from '../nkdatetime/nkdatetime.component';
-//import { NKDatetime } from "ng2-datetime/ng2-datetime";
-
 import { Loan } from "./loan";
 import { DateUtils } from "../../dateutils"
 import 'rxjs/add/operator/map'
@@ -84,8 +82,8 @@ export class LoanComponent implements AfterViewInit {
 		}
 	}
 
-	interestPerMonth(): number {
-		return this.principleField * this.currentLoan.fractionPerPeriod;
+	interestPer30Days(): number {
+		return this.currentLoan.interestForDays(30);
 	}
 
     constructor(public http: Http, public cdRef: ChangeDetectorRef) {
@@ -132,11 +130,11 @@ export class LoanComponent implements AfterViewInit {
 	}
 
 	payLoan() {
-		this.currentLoan.pay(this.payField, DateUtils.getCurrentDate());
+		this.currentLoan.pay(this.payField, this.controlDatePicker);
 	}
 
 	borrowMore() {
-		this.currentLoan.borrow(this.borrowField, DateUtils.getCurrentDate());
+		this.currentLoan.borrow(this.borrowField, this.controlDatePicker);
 	}
 
 	rateFieldChange() {

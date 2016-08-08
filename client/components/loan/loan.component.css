@@ -14,13 +14,6 @@
 	font-size: 1em;
 }
 
-tbody tr:nth-child(even) {
-	background-color: #F9FAFB;
-}
-
-.btn {
-    
-}
 
 .btn.positive {
     background-color: #21BA45!important;

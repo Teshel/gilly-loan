@@ -28,11 +28,9 @@
                 <!-- Starting Date Selector Input Group -->
                 <div class="row">
                     <div class="col-md-12">
-
                         <div class="form-group">
                             <label>Starting Date</label>
                             <!-- <datetime [(ngModel)]="datePicker"></datetime> -->
-
 
                             <datetime [(ngModel)]="datePicker" [timepicker]="false" [datepicker]="{icon: 'fa fa-calendar'}" [disabled]="showControlPanel"></datetime>
 
@@ -80,24 +78,21 @@
                             <option value="annually">Annually</option>
                         </select>
                     </div>
-
-
                 </div>
 
                 <div *ngIf="true" class="row">
                     <div class="col-md-12">
-
                         <table class="table table-bordered table-curved table-info table-responsive">
                             <tr>
                                 <th>Effective Interest Rate</th>
                                 <td>{{effectiveRate().toFixed(4)}}%</td>
                             </tr>
-                            <tr *ngIf="interestPerMonthToggle">
+                            <tr>
                                 <th>
-                                    Interest Per Month
+                                    Interest Per 30 Days
                                 </th>
                                 <td>
-                                    {{interestPerMonth()}}
+                                    ${{interestPer30Days().toFixed(2)}}
                                 </td>
                             </tr>
                             <tr *ngIf="minimumPaymentToggle">
@@ -123,7 +118,7 @@
                 <!-- Create Button Group -->
                 <div *ngIf="showCreatePanel" class="row">
                     <div class="col-md-6 btn-group">
-                        <button type="button" class="btn positive" (click)="createLoan()">Create Loan</button>
+                        <button type="button" class="btn btn-lg positive" (click)="createLoan()">Create Loan</button>
                     </div>
                     <!-- <div class="col-md-6 btn-group input-group">
                         <span class="input-group-btn"><button type="button" class="btn purple" (click)="createAmortizedLoan()">Create Loan Amortized Over</button></span>
@@ -133,7 +128,6 @@
                 </div>
                 <!-- End Create Button Group -->
 
-
                 <!-- Loan Control Panel -->
                 <div [hidden]="showCreatePanel" class="well">
                     <div class="row">
@@ -142,12 +136,8 @@
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
                                 <input type="text" class="form-control" [(ngModel)]="borrowField" placeholder="" value="10000" />
+                                <span class="input-group-btn"><button type="button" class="btn positive" (click)="borrowMore()">Borrow</button></span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 btn-group">
-                            <button type="button" class="btn positive" (click)="borrowMore()">Borrow</button>
                         </div>
                     </div>
                     <br />
@@ -158,12 +148,13 @@
                             <div class="input-group">
                                 <div class="input-group-addon">$</div>
                                 <input type="text" class="form-control" [(ngModel)]="payField" placeholder="" value="1000" />
+                                <span class="input-group-btn"><button type="button" class="btn positive" (click)="payLoan()">Pay</button></span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 btn-group">
-                            <button type="button" class="btn positive" (click)="payLoan()">Pay</button>
+
                         </div>
                     </div>
                     <br />
